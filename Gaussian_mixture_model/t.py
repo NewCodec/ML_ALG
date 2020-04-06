@@ -3,12 +3,12 @@
 import numpy as np
 import openpyxl
 
-LOAD_DATA = []
-def LoadData(xlsxName):
+def LoadData(xlsxName,data_loaded=[]):
+    data_loaded.clear()
     wb = openpyxl.load_workbook(xlsxName)
     sheet = wb['Sheet1']
     for row in sheet.iter_rows():
-        LOAD_DATA.append((row[0].value,row[1].value,row[2].value))
+        data_loaded.append((row[0].value,row[1].value,row[2].value))
 
 class GaussianMixtureModel(object):
 
@@ -23,15 +23,15 @@ class GaussianMixtureModel(object):
         a_v = np.divide(1,self.model_num)
         ainit = (a_v,a_v,a_v)
         uinit = (data[6],data[22],data[27])
-        einit = 
+        einit = []
     def Caculate_lambda(self):
         pass
 
 
 learn_num = 3;
-
-LoadData('watermelon_datasheet_4_0.xlsx')
-print(LOAD_DATA)
+data=[]
+LoadData('watermelon_datasheet_4_0.xlsx',data)
+print(data)
 #test = GaussianMixtureModel(data,3,)
 
 
